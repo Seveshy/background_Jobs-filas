@@ -1,5 +1,3 @@
-import Mail from '../lib/Mail';
-
 export default {
     async store(req, res) {
         const { name, email, password } = req.body;
@@ -10,13 +8,7 @@ export default {
             password,
         };
 
-        // Enviar um e-mail.
-        await Mail.sendMail({
-            from: 'Queue Test <queue@queuetest.com.br',
-            to: `${name} <${email}>`,
-            subject: 'Cadastro de usuário',
-            html: `Olá, ${name}, bem-vindo ao sistema de filas da Marinha :D`
-        });
+        // Adicionar job RegistratiobMail na fila
 
         return res.json(user);
     }
